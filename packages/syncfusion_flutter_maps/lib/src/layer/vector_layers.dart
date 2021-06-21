@@ -1911,7 +1911,7 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
       );
       final Offset controlPoint = _calculateControlPoint(
           startPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
-      print("kokillla", controlPoint.toString() );
+      print("kokillla");
       if (_previousHoverItem != null &&
           _previousHoverItem == arc &&
           _themeData.shapeHoverColor != Colors.transparent) {
