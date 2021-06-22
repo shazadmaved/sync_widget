@@ -12,7 +12,7 @@ dependencies:
 
   syncfusion_flutter_core:
     git: 
-      url: git@github.com:shazadmaved/sync_widget.git
+      url: https://github.com/shazadmaved/sync_widget.git
       path: packages/syncfusion_flutter_core/
       ref: main
   arrow_path: ^2.0.0
