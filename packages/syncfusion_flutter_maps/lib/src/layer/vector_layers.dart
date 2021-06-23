@@ -1931,11 +1931,21 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
         ..quadraticBezierTo(
             controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
       
-      path = ArrowPath.make(path: path);
+      
       if (_animation != null) {
         path = _getAnimatedPath(path, _animation!);
       }
       _drawDashedLine(context.canvas, arc.dashArray, paint, path);
+
+           path
+        ..reset()
+        ..moveTo(startPoint.dx, startPoint.dy)
+        ..quadraticBezierTo(
+            controlPoint.dx, controlPoint.dy,controlPoint.dx, controlPoint.dy);
+      
+      path = ArrowPath.make(path: path);
+
+
     }
     context.canvas.restore();
   }
