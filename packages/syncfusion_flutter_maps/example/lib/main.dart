@@ -76,7 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     MapArc(
                         color: Colors.red,
                         from: MapLatLng(-37.020100, 144.964600),
-                        to: MapLatLng(-19.491411, 132.550964))
+                        to: MapLatLng(-19.491411, 132.550964)),
+                    MapArc(
+                        color: Colors.red,
+                        from: MapLatLng(-19.491411, 132.550964),
+                        to: MapLatLng(-25.042261, 117.793221)),
                   ].toSet())
                 ],
                 showDataLabels: true,
