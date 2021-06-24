@@ -1171,7 +1171,7 @@ class MapArcLayer extends MapVectorLayer {
   ///   MapLatLng to;
   /// }
   /// ```
-  final Set<MapArc> arcs;
+  final List<MapArc> arcs;
 
   /// Animation for the [arcs] in [MapArcLayer].
   ///
@@ -1911,6 +1911,10 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
       );
       final Offset controlPoint = _calculateControlPoint(
           startPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
+      final Offset controlMidPoint = _calculateControlPoint(
+          startPoint, controlPoint, arc.heightFactor, arc.controlPointFactor);
+      final Offset controlEndPoint = _calculateControlPoint(
+          controlPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
       print("kokillla");
       if (_previousHoverItem != null &&
           _previousHoverItem == arc &&
@@ -1928,10 +1932,12 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
       path
         ..reset()
         ..moveTo(startPoint.dx, startPoint.dy)
-        ..quadraticBezierTo(
-            controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
-      
+        ..quadraticBezierTo(controlMidPoint.dx, controlMidPoint.dy,
+            controlPoint.dx, controlPoint.dy);
+
       path = ArrowPath.make(path: path);
+      path.quadraticBezierTo(
+          controlEndPoint.dx, controlEndPoint.dy, endPoint.dx, endPoint.dy);
       if (_animation != null) {
         path = _getAnimatedPath(path, _animation!);
       }

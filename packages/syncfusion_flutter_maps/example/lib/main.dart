@@ -70,6 +70,15 @@ class _MyHomePageState extends State<MyHomePage> {
             layers: <MapShapeLayer>[
               MapShapeLayer(
                 source: _mapSource,
+                sublayers: [
+                  MapArcLayer(
+                      arcs: [
+                    MapArc(
+                        color: Colors.red,
+                        from: MapLatLng(-37.020100, 144.964600),
+                        to: MapLatLng(-19.491411, 132.550964))
+                  ].toSet())
+                ],
                 showDataLabels: true,
                 legend: MapLegend(MapElement.shape),
                 tooltipSettings: MapTooltipSettings(
