@@ -1168,10 +1168,10 @@ class MapArcLayer extends MapVectorLayer {
   ///   Model(this.from, this.to);
   ///
   ///   MapLatLng from;
-  ///   MapLatLng to;
+  ///   MapLatLng to;s
   /// }
   /// ```
-  final List<MapArc> arcs;
+  final Set<MapArc> arcs;
 
   /// Animation for the [arcs] in [MapArcLayer].
   ///
