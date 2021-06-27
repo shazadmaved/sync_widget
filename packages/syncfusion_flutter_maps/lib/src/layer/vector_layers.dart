@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'dart:ui';
-
+import 'arrow.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:arrow_path/arrow_path.dart';
+
 import '../../maps.dart';
 import '../behavior/zoom_pan_behavior.dart';
 import '../common.dart';
@@ -1911,10 +1911,10 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
       );
       final Offset controlPoint = _calculateControlPoint(
           startPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
-      final Offset controlMidPoint = _calculateControlPoint(
-          startPoint, controlPoint, arc.heightFactor, arc.controlPointFactor);
-      final Offset controlEndPoint = _calculateControlPoint(
-          controlPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
+      // final Offset controlMidPoint = _calculateControlPoint(
+      //     startPoint, controlPoint, arc.heightFactor, arc.controlPointFactor);
+      // final Offset controlEndPoint = _calculateControlPoint(
+      //     controlPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
       print("kokillla");
       if (_previousHoverItem != null &&
           _previousHoverItem == arc &&
@@ -1932,12 +1932,14 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
       path
         ..reset()
         ..moveTo(startPoint.dx, startPoint.dy)
-        ..quadraticBezierTo(controlMidPoint.dx, controlMidPoint.dy,
-            controlPoint.dx, controlPoint.dy);
+        ..quadraticBezierTo(
+            controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
 
-      path = ArrowPath.make(path: path);
-      path.quadraticBezierTo(
-          controlEndPoint.dx, controlEndPoint.dy, endPoint.dx, endPoint.dy);
+      path = ArrowPath.make(
+        path: path,
+      );
+      // path.quadraticBezierTo(
+      //     controlEndPoint.dx, controlEndPoint.dy, endPoint.dx, endPoint.dy);
       if (_animation != null) {
         path = _getAnimatedPath(path, _animation!);
       }

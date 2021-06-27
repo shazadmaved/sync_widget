@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState();
 
+// MapLatLng p1=MapLatLng(31.083332, longitude)
   late List<Model> _data;
   late MapShapeSource _mapSource;
 
@@ -64,48 +65,48 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: 520,
+        height: double.infinity,
         child: Center(
           child: SfMaps(
-            layers: <MapShapeLayer>[
-              MapShapeLayer(
-                source: _mapSource,
+            layers: [
+              MapTileLayer(
+                zoomPanBehavior: MapZoomPanBehavior(),
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/vaibhav72/ckpp36jn70jki18pbiopnzaid/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidmFpYmhhdjcyIiwiYSI6ImNrcHAzM3FzZTE4NHQycHFxa3Znb3MwZ3kifQ.OOnIxS-xtsYGBU3TSb_BYA',
                 sublayers: [
                   MapArcLayer(
                       arcs: [
                     MapArc(
                         color: Colors.red,
-                        from: MapLatLng(-37.020100, 144.964600),
-                        to: MapLatLng(-19.491411, 132.550964)),
+                        controlPointFactor: 0.5,
+                        to: MapLatLng(28.6139, 77.2090),
+                        from: MapLatLng(12.9141, 74.8560)),
                     MapArc(
                         color: Colors.red,
-                        from: MapLatLng(-19.491411, 132.550964),
-                        to: MapLatLng(-25.042261, 117.793221)),
+                        from: MapLatLng(12.9141, 74.8560),
+                        to: MapLatLng(17.3850, 78.4867)),
+                    MapArc(
+                        color: Colors.red,
+                        from: MapLatLng(17.3850, 78.4867),
+                        to: MapLatLng(22.9734, 78.6569))
+                    // MapArc(
+                    //     controlPointFactor: 0.5,
+                    //     color: Colors.red,
+                    //     from: MapLatLng(-37.020100, 144.964600),
+                    //     to: MapLatLng(-19.491411, 132.550964)),
+                    // MapArc(
+                    //     color: Colors.red,
+                    //     controlPointFactor: 0.5,
+                    //     heightFactor: 0.1,
+                    //     from: MapLatLng(-19.491411, 132.550964),
+                    //     to: MapLatLng(-33.185833, 138.016937)),
+                    // MapArc(
+                    //     color: Colors.red,
+                    //     heightFactor: 0.1,
+                    //     from: MapLatLng(-25.042261, 117.793221),
+                    //     to: MapLatLng(-37.020100, 144.964600)),
                   ].toSet())
                 ],
-                showDataLabels: true,
-                legend: MapLegend(MapElement.shape),
-                tooltipSettings: MapTooltipSettings(
-                    color: Colors.grey[700],
-                    strokeColor: Colors.white,
-                    strokeWidth: 2),
-                strokeColor: Colors.white,
-                strokeWidth: 0.5,
-                shapeTooltipBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      _data[index].stateCode,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  );
-                },
-                dataLabelSettings: MapDataLabelSettings(
-                    textStyle: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize:
-                            Theme.of(context).textTheme.caption!.fontSize)),
               ),
             ],
           ),
