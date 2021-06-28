@@ -38,7 +38,7 @@ class ArrowPath {
     double adjustmentAngle = 0;
 
     double angle = math.pi - tipAngle;
-    print(path.getBounds().center);
+
     lastPathMetric = path.computeMetrics().last;
     if (isDoubleSided) {
       firstPathMetric = path.computeMetrics().first;
@@ -54,13 +54,17 @@ class ArrowPath {
       adjustmentAngle = _getAngleBetweenVectors(tan.vector, tanBefore.vector);
     }
 
-    tipVector = _rotateVector(tan.vector, angle - adjustmentAngle) * tipLength;
+    Offset tipVector1 =
+        _rotateVector(tan.vector, angle - adjustmentAngle) * tipLength;
     path.moveTo(tan.position.dx, tan.position.dy);
-    path.relativeLineTo(tipVector.dx, tipVector.dy);
+    path.relativeLineTo(tipVector1.dx, tipVector1.dy);
 
     tipVector = _rotateVector(tan.vector, -angle - adjustmentAngle) * tipLength;
     path.moveTo(tan.position.dx, tan.position.dy);
     path.relativeLineTo(tipVector.dx, tipVector.dy);
+    angle = 2 * angle;
+    // tipVector = _rotateVector(tan.vector, 33) * (tipLength + 4);
+    // path.relativeLineTo(tipVector.dx, tipVector.dy);
 
     if (isDoubleSided) {
       tan = firstPathMetric!.getTangentForOffset(0);
@@ -73,6 +77,7 @@ class ArrowPath {
       tipVector =
           _rotateVector(-tan!.vector, angle - adjustmentAngle) * tipLength;
       path.moveTo(tan.position.dx, tan.position.dy);
+
       path.relativeLineTo(tipVector.dx, tipVector.dy);
 
       tipVector =

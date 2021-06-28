@@ -1909,6 +1909,7 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
         translationOffset,
         _controller!.shapeLayerSizeFactor,
       );
+      print(_controller!.tileCurrentLevelDetails.zoomLevel);
       final Offset controlPoint = _calculateControlPoint(
           startPoint, endPoint, arc.heightFactor, arc.controlPointFactor);
       // final Offset controlMidPoint = _calculateControlPoint(
@@ -1936,8 +1937,9 @@ class _RenderMapArc extends RenderBox implements MouseTrackerAnnotation {
             controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
 
       path = ArrowPath.make(
-        path: path,
-      );
+          path: path,
+          // ignore: lines_longer_than_80_chars
+          tipLength: 3 * _controller!.tileCurrentLevelDetails.zoomLevel);
       // path.quadraticBezierTo(
       //     controlEndPoint.dx, controlEndPoint.dy, endPoint.dx, endPoint.dy);
       if (_animation != null) {
